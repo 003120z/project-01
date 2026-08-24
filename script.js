@@ -96,3 +96,21 @@ signupForm.addEventListener("submit", (event) => {
     "Заявка принята (только в этом окне). Спасибо, " + name + "!";
   signupForm.reset();
 });
+
+const factBtn = document.getElementById("factBtn");
+const factText = document.getElementById("factText");
+
+factBtn.addEventListener("click", async () => {
+  factText.textContent = "Загрузка...";
+
+  try {
+    const response = await fetch("https://uselessfacts.jsph.pl/api/v2/facts/random");
+    if (!response.ok) {
+      throw new Error();
+    }
+    const data = await response.json();
+    factText.textContent = data.text;
+  } catch (error) {
+    factText.textContent = "Не удалось получить факт. Попробуйте ещё раз.";
+  }
+});
