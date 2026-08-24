@@ -114,3 +114,12 @@ factBtn.addEventListener("click", async () => {
     factText.textContent = "Не удалось получить факт. Попробуйте ещё раз.";
   }
 });
+
+const helloBtn = document.getElementById("helloBtn");
+const helloText = document.getElementById("helloText");
+
+helloBtn.addEventListener("click", async () => {
+  const response = await fetch("/api/hello");
+  const data = await response.json();
+  helloText.textContent = data.message;
+});
