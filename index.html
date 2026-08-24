@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Отвечайка — AI отвечает клиентам за вас</title>
+    <meta
+      name="description"
+      content="Отвечайка — вымышленный сервис, который с помощью AI отвечает клиентам малого бизнеса в чатах, почте и мессенджерах."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="header">
+      <a class="logo" href="#top">Отвечайка</a>
+      <nav class="nav" id="nav">
+        <a href="#how">Как это работает</a>
+        <a href="#features">Возможности</a>
+        <a href="#demo">Демо</a>
+        <a href="#pricing">Тарифы</a>
+        <a class="nav-cta" href="#signup">Попробовать</a>
+      </nav>
+      <button class="menu-btn" id="menuBtn" type="button" aria-label="Открыть меню">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <p class="eyebrow">Для малого бизнеса</p>
+        <h1>Ваш бизнес работает, даже когда вы отдыхаете</h1>
+        <p class="lead">
+          Отвечайка читает сообщения в чате, почте и мессенджерах и отвечает так,
+          как ответили бы вы: вежливо, по делу и в вашем стиле.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary btn-hero" href="#signup">Начать бесплатно</a>
+          <a class="btn btn-ghost" href="#demo">Смотреть демо</a>
+        </div>
+        <div class="hero-card">
+          <div class="chat-preview" aria-hidden="true">
+            <div class="bubble incoming">Здравствуйте! Есть ли свободное окно завтра после 18:00?</div>
+            <div class="bubble outgoing">
+              Да, завтра свободно 18:30 и 19:15. На какое время вас записать?
+            </div>
+            <div class="bubble incoming">На 18:30, пожалуйста. Это студия на Ленина?</div>
+            <div class="bubble outgoing">
+              Записала вас на 18:30. Да, студия на Ленина, 12. Если планы изменятся — напишите, перенесём.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="how">
+        <h2>Три шага — и клиенты больше не ждут</h2>
+        <div class="steps">
+          <article class="card">
+            <span class="step-num">01</span>
+            <h3>Подключаете каналы</h3>
+            <p>Сайт, почта, Telegram, WhatsApp или форма записи. Всё в одном окне.</p>
+          </article>
+          <article class="card">
+            <span class="step-num">02</span>
+            <h3>Рассказываете про бизнес</h3>
+            <p>Часы работы, цены, услуги, тон общения. AI учится звучать как ваш администратор.</p>
+          </article>
+          <article class="card">
+            <span class="step-num">03</span>
+            <h3>Ответы уходят сами</h3>
+            <p>Клиент получает ответ за секунды. Сложные вопросы Отвечайка передаёт вам.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="features">
+        <h2>Что умеет Отвечайка</h2>
+        <div class="features">
+          <article class="feature">
+            <h3>Отвечает 24/7</h3>
+            <p>Ночью, в выходные и в час пик. Клиент не уходит к конкуренту из-за тишины.</p>
+          </article>
+          <article class="feature">
+            <h3>Говорит вашим языком</h3>
+            <p>Можно выбрать тон: тёплый, строгий или с лёгким юмором — как в вашей студии или мастерской.</p>
+          </article>
+          <article class="feature">
+            <h3>Не выдумывает факты</h3>
+            <p>Если цены или слот неизвестны, AI честно скажет и позовёт человека.</p>
+          </article>
+          <article class="feature">
+            <h3>Собирает заявки</h3>
+            <p>Имя, телефон, удобное время — сразу в список, чтобы вы только подтвердили.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section demo-section" id="demo">
+        <h2>Попробуйте сами</h2>
+        <p class="section-lead">
+          Напишите так, как написал бы клиент цветочного магазина «Пион».
+          Это учебное демо: ответы придумывает простой скрипт, без настоящего AI.
+        </p>
+        <div class="demo">
+          <div class="demo-chat" id="demoChat" aria-live="polite"></div>
+          <form class="demo-form" id="demoForm">
+            <label class="sr-only" for="demoInput">Сообщение клиента</label>
+            <input
+              id="demoInput"
+              type="text"
+              maxlength="200"
+              placeholder="Например: Есть ли розы к пятнице?"
+              autocomplete="off"
+            />
+            <button class="btn btn-primary" type="submit">Отправить</button>
+          </form>
+        </div>
+      </section>
+
+      <section class="section" id="pricing">
+        <h2>Тарифы без сюрпризов</h2>
+        <div class="pricing">
+          <article class="price-card">
+            <h3>Старт</h3>
+            <p class="price">0 ₽<span> / месяц</span></p>
+            <ul>
+              <li>1 канал связи</li>
+              <li>100 ответов</li>
+              <li>Базовый тон общения</li>
+            </ul>
+            <a class="btn btn-ghost" href="#signup">Выбрать</a>
+          </article>
+          <article class="price-card featured">
+            <p class="badge">Популярный</p>
+            <h3>Мастерская</h3>
+            <p class="price">1 990 ₽<span> / месяц</span></p>
+            <ul>
+              <li>Все каналы</li>
+              <li>Безлимит ответов</li>
+              <li>Передача сложных вопросов вам</li>
+            </ul>
+            <a class="btn btn-primary" href="#signup">Выбрать</a>
+          </article>
+          <article class="price-card">
+            <h3>Сеть</h3>
+            <p class="price">4 990 ₽<span> / месяц</span></p>
+            <ul>
+              <li>Несколько точек</li>
+              <li>Общая база знаний</li>
+              <li>Отчёт по заявкам</li>
+            </ul>
+            <a class="btn btn-ghost" href="#signup">Выбрать</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="section signup" id="signup">
+        <h2>Оставьте заявку на демо</h2>
+        <p class="section-lead">Это учебный сайт. Данные никуда не отправляются — только проверяются в браузере.</p>
+        <form class="signup-form" id="signupForm" novalidate>
+          <label>
+            Имя
+            <input id="name" name="name" type="text" required placeholder="Анна" />
+          </label>
+          <label>
+            Email
+            <input id="email" name="email" type="email" required placeholder="anna@studio.ru" />
+          </label>
+          <label>
+            Чем занимаетесь
+            <input id="business" name="business" type="text" required placeholder="Цветочный магазин" />
+          </label>
+          <p class="form-message" id="formMessage" role="status"></p>
+          <button class="btn btn-primary" type="submit">Записаться на демо</button>
+        </form>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Отвечайка — вымышленный сервис для обучения вёрстке. Не настоящая компания.</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
