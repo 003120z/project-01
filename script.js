@@ -35,6 +35,8 @@ addBubble(
   "outgoing"
 );
 
+const messages = [];
+
 demoForm.addEventListener("submit", async (event) => {
   event.preventDefault();
   const message = demoInput.value.trim();
@@ -44,15 +46,17 @@ demoForm.addEventListener("submit", async (event) => {
 
   addBubble(message, "incoming");
   demoInput.value = "";
+  messages.push({ role: "user", content: message });
 
   const response = await fetch("/api/chat", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({ message: message })
+    body: JSON.stringify({ messages: messages })
   });
   const data = await response.json();
+  messages.push({ role: "assistant", content: data.reply });
   addBubble(data.reply, "outgoing");
 });
 

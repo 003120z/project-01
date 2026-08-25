@@ -1,6 +1,6 @@
 export default async function handler(request, response) {
     try {
-      const message = request.body.message;
+      const messages = request.body.messages;
 
       const gmiResponse = await fetch("https://api.gmi-serving.com/v1/chat/completions", {
         method: "POST",
@@ -10,12 +10,7 @@ export default async function handler(request, response) {
         },
         body: JSON.stringify({
           model: "MiniMaxAI/MiniMax-M3",
-          messages: [
-            {
-              role: "user",
-              content: message
-            }
-          ]
+          messages: messages
         })
       });
   
