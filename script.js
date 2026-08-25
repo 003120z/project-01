@@ -41,6 +41,8 @@ if (!userId) {
   localStorage.setItem("user_id", userId);
 }
 
+let conversationId = localStorage.getItem("conversation_id") || null;
+
 const messages = JSON.parse(localStorage.getItem("messages") || "[]");
 
 messages.forEach((item) => {
@@ -64,9 +66,13 @@ demoForm.addEventListener("submit", async (event) => {
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({ messages: messages, user_id: userId })
+    body: JSON.stringify({ messages: messages, user_id: userId, conversation_id: conversationId })
   });
   const data = await response.json();
+  if (data.conversation_id && data.conversation_id !== conversationId) {
+    conversationId = data.conversation_id;
+    localStorage.setItem("conversation_id", conversationId);
+  }
   messages.push({ role: "assistant", content: data.reply });
   localStorage.setItem("messages", JSON.stringify(messages));
   addBubble(data.reply, "outgoing");
