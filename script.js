@@ -35,6 +35,12 @@ addBubble(
   "outgoing"
 );
 
+let userId = localStorage.getItem("user_id");
+if (!userId) {
+  userId = crypto.randomUUID();
+  localStorage.setItem("user_id", userId);
+}
+
 const messages = JSON.parse(localStorage.getItem("messages") || "[]");
 
 messages.forEach((item) => {
@@ -58,7 +64,7 @@ demoForm.addEventListener("submit", async (event) => {
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({ messages: messages })
+    body: JSON.stringify({ messages: messages, user_id: userId })
   });
   const data = await response.json();
   messages.push({ role: "assistant", content: data.reply });
