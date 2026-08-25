@@ -35,7 +35,11 @@ addBubble(
   "outgoing"
 );
 
-const messages = [];
+const messages = JSON.parse(localStorage.getItem("messages") || "[]");
+
+messages.forEach((item) => {
+  addBubble(item.content, item.role === "user" ? "incoming" : "outgoing");
+});
 
 demoForm.addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -47,6 +51,7 @@ demoForm.addEventListener("submit", async (event) => {
   addBubble(message, "incoming");
   demoInput.value = "";
   messages.push({ role: "user", content: message });
+  localStorage.setItem("messages", JSON.stringify(messages));
 
   const response = await fetch("/api/chat", {
     method: "POST",
@@ -57,6 +62,7 @@ demoForm.addEventListener("submit", async (event) => {
   });
   const data = await response.json();
   messages.push({ role: "assistant", content: data.reply });
+  localStorage.setItem("messages", JSON.stringify(messages));
   addBubble(data.reply, "outgoing");
 });
 
