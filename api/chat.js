@@ -1,5 +1,7 @@
 export default async function handler(request, response) {
     try {
+      const message = request.body.message;
+
       const gmiResponse = await fetch("https://api.gmi-serving.com/v1/chat/completions", {
         method: "POST",
         headers: {
@@ -11,7 +13,7 @@ export default async function handler(request, response) {
           messages: [
             {
               role: "user",
-              content: "Привет! Ответь одной короткой фразой на русском."
+              content: message
             }
           ]
         })

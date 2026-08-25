@@ -29,35 +29,13 @@ function addBubble(text, type) {
   demoChat.scrollTop = demoChat.scrollHeight;
 }
 
-function replyTo(message) {
-  const text = message.toLowerCase();
-
-  if (text.includes("роз") || text.includes("букет") || text.includes("пион")) {
-    return "Да, розы и пионы есть. Букет к пятнице соберём, если закажете сегодня. Нужна доставка или самовывоз?";
-  }
-  if (text.includes("цен") || text.includes("сколько") || text.includes("стоит")) {
-    return "Сборные букеты от 2 500 ₽, монобукет роз — от 3 200 ₽. Могу подобрать вариант под ваш бюджет.";
-  }
-  if (text.includes("доставк") || text.includes("адрес")) {
-    return "Доставляем по городу с 10:00 до 20:00. Напишите адрес и удобный интервал — передадим курьеру.";
-  }
-  if (text.includes("работ") || text.includes("открыт") || text.includes("час")) {
-    return "Мы открыты ежедневно с 10:00 до 21:00. Самовывоз — улица Садовая, 8.";
-  }
-  if (text.includes("запис") || text.includes("завтра") || text.includes("время")) {
-    return "Могу забронировать сборку на завтра. Напишите время и для какого случая букет.";
-  }
-
-  return "Спасибо за сообщение! Уточните, пожалуйста: нужен букет, доставка или часы работы — подскажу точнее.";
-}
-
 addBubble("Здравствуйте! Можно заказать букет на пятницу?", "incoming");
 addBubble(
   "Конечно. Напишите, какой цветок любите и нужен ли курьер — соберём и подтвердим.",
   "outgoing"
 );
 
-demoForm.addEventListener("submit", (event) => {
+demoForm.addEventListener("submit", async (event) => {
   event.preventDefault();
   const message = demoInput.value.trim();
   if (!message) {
@@ -67,9 +45,15 @@ demoForm.addEventListener("submit", (event) => {
   addBubble(message, "incoming");
   demoInput.value = "";
 
-  window.setTimeout(() => {
-    addBubble(replyTo(message), "outgoing");
-  }, 500);
+  const response = await fetch("/api/chat", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ message: message })
+  });
+  const data = await response.json();
+  addBubble(data.reply, "outgoing");
 });
 
 signupForm.addEventListener("submit", (event) => {
